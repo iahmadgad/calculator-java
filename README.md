@@ -1,2 +1,2 @@
 # SimpleCalculator.Java
-This is a Simple Calculator that made by Java
+A Simple Calculator made by Java
