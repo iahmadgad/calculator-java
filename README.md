@@ -1,4 +1,4 @@
-# Calculator.Java
+# [![Java logo](https://github.com/iAhmadGad/Calculator.Java/blob/main/imgs/java-logo.png)]() Calculator.Java
 A Calculator made with java -Still under development-.
 ## v0.2
 - Fixed some buttons functions.
