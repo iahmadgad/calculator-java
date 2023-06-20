@@ -1,4 +1,4 @@
-# [![Java logo](https://github.com/iAhmadGad/Calculator.Java/blob/main/imgs/java-logo.png)]() JCalculator.Java
+# [![Java logo](https://github.com/iAhmadGad/Calculator.Java/blob/main/imgs/java-logo.png)]() JCalculator
 A Calculator made with java -Still under development-.
 ## `v0.3`
 - Changed the calculator font to monoscaped font.
