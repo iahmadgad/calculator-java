@@ -5,6 +5,8 @@ A Calculator made with java -Still under development-.
 - Fixed caret position.
 - Fixed random number function.
 - Fixed Jar file.
+
+Jun 22, 2023
 ## `v0.3`
 - Changed the calculator font to monoscaped font.
 - Customised the program look & feel.
