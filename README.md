@@ -22,7 +22,7 @@ The calculator provides 3 trigonometric functions ($sin$, $cos$, $tan$), more fu
 The calculator can generate a random double number (number with decimals), by writing `rn`, & to generate a random number between 2 specific values, write 2 numbers and a comma between them as: `rn5,10`.
 ## ⚖️ License
 [Apache License 2.0](https://github.com/iAhmadGad/JCalculator.Java/blob/main/LICENSE.txt)
-# **☕ Releases**
+# **☕ Changelog**
 ## ☕ `Latest: v0.4`
 - Fixed root and cube root.
 - Fixed caret position.
