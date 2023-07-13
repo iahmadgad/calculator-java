@@ -22,27 +22,3 @@ The calculator provides 3 trigonometric functions ($sin$, $cos$, $tan$), more fu
 The calculator can generate a random double number (number with decimals), by writing `rn`, & to generate a random number between 2 specific values, write 2 numbers and a comma between them as: `rn5,10`.
 ## ⚖️ License
 [Apache License 2.0](https://github.com/iAhmadGad/JCalculator.Java/blob/main/LICENSE.txt)
-# **☕ Changelog**
-## ☕ `Latest: v0.4`
-- Fixed root and cube root.
-- Fixed caret position.
-- Fixed random number function.
-- Fixed Jar file.
-
-_Jun 22, 2023_
-## ☕ `v0.3`
-- Changed the calculator font to monoscaped font.
-- Customised the program look & feel.
-- Added the trigonometric functions.
-- The calculator now can solve problems with decimals.
-
-_Jun 18, 2023_
-## ☕ `v0.2`
-- Fixed some buttons functions.
-- Reorganised the code by deleting some unimportant variables and classes.
-
- _Jun 14, 2023_
-## ☕ `v0.1`
-- The first release, still too much to accomplish.
-
-_Aug 29, 2022_
