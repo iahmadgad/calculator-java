@@ -1,9 +1,9 @@
 # **☕ Changelog**
 ## Index
-- [`Latest: v0.4`](https://github.com/iAhmadGad/JCalculator/edit/main/Docs/Changelog.md#-latest-v04)
-- [`v0.3`](https://github.com/iAhmadGad/JCalculator/edit/main/Docs/Changelog.md#-v03)
-- [`v0.2`](https://github.com/iAhmadGad/JCalculator/edit/main/Docs/Changelog.md#-v02)
-- [`v0.1`](https://github.com/iAhmadGad/JCalculator/edit/main/Docs/Changelog.md#-v01)
+- [`Latest: v0.4`](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/Changelog.md#-latest-v04)
+- [`v0.3`](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/Changelog.md#-v03)
+- [`v0.2`](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/Changelog.md#-v02)
+- [`v0.1`](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/Changelog.md#-v01)
 ## ☕ `Latest: v0.4`
 - Fixed root and cube root.
 - Fixed caret position.
