@@ -23,8 +23,8 @@ The calculator can get the number to the power of any number with power operator
 The calculator provides 3 trigonometric functions ($sin$, $cos$, $tan$), more functions will be added in the future -In shaa Allah-.
 - Random number Genarator `rn`
 
-The calculator can generate a random double number (number with decimals), by writing `rn`, & to generate a random number between 2 specific values, write 2 numbers and a comma between them as: `rn5,10`.
+The calculator can generate a random float number (number with decimals), by writing `rn`, & to generate a random number between 2 specific values, write 2 numbers and a comma between them as: `rn5,10`.
 ## ⚖️ License
-[Apache License 2.0](https://github.com/iAhmadGad/JCalculator.Java/blob/main/LICENSE.txt)
+[GPL-3.0](https://github.com/iAhmadGad/JCalculator.Java/blob/main/LICENSE)
 ## [📄 Documentations](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/README.md)
 - [Changelog](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/Changelog.md)
