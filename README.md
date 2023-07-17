@@ -3,7 +3,7 @@
 ![Java Swing](https://img.shields.io/badge/java_swing-black?style=for-the-badge&logo=openjdk)
 ![Java AWT](https://img.shields.io/badge/java_awt-black?style=for-the-badge&logo=openjdk)
 ##
-A Calculator made with Java -still under development-.
+A Calculator written in Java.
 
 It solves maths operations & trigonometric functions in problems of -only- 2 numbers.
 
@@ -24,8 +24,7 @@ The calculator provides 3 trigonometric functions ($sin$, $cos$, $tan$), more fu
 - Random number Genarator `rn`
 
 The calculator can generate a random double number (number with decimals), by writing `rn`, & to generate a random number between 2 specific values, write 2 numbers and a comma between them as: `rn5,10`.
-## [📄 Documentations](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/README.md)
-- [Changelog](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/Changelog.md)
 ## ⚖️ License
 [Apache License 2.0](https://github.com/iAhmadGad/JCalculator.Java/blob/main/LICENSE.txt)
-
+## [📄 Documentations](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/README.md)
+- [Changelog](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/Changelog.md)
