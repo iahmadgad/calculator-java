@@ -27,4 +27,4 @@ The calculator can generate a random float number (number with decimals), by wri
 ## ⚖️ License
 [GPL-3.0](https://github.com/iAhmadGad/JCalculator.Java/blob/main/LICENSE)
 ## [📄 Documentations](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/README.md)
-- [Changelog](https://github.com/iAhmadGad/JCalculator/blob/main/Docs/Changelog.md)
+- [Changelog](https://github.com/iAhmadGad/JCalculator/blob/main/docs/Changelog.md)
