@@ -1,8 +1,6 @@
-# JCalculator
-![Java](https://img.shields.io/badge/java-black?style=for-the-badge&logo=openjdk)
-![Java Swing](https://img.shields.io/badge/java_swing-black?style=for-the-badge&logo=openjdk)
-![Java AWT](https://img.shields.io/badge/java_awt-black?style=for-the-badge&logo=openjdk)
-##
+<h2 align="center">JCalculator<br/></h2>
+<h2 align="center"><img src="https://img.shields.io/badge/java-black?style=for-the-badge&logo=openjdk" alt="Java"><img src="https://img.shields.io/badge/java_swing-black?style=for-the-badge&logo=openjdk" alt="Java Swing"><img src="https://img.shields.io/badge/java_awt-black?style=for-the-badge&logo=openjdk" alt="Java AWT"></h2>
+
 A Calculator written in Java.
 
 It solves maths operations & trigonometric functions in problems of -only- 2 numbers.
