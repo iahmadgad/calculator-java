@@ -7,8 +7,6 @@ It solves maths operations & trigonometric functions in problems of -only- 2 num
 
 Still trying to figure out an algorithm that could solve problems of more than 2 numbers, considering the operator precedence.
 
-> _Note: Due to travel reasons, the developing process would be delayed until September 2023._
-
 ## 💡 Functions
 - Addition, subtraction, multiplacation & division
 
