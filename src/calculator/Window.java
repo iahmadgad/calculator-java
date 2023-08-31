@@ -1,6 +1,6 @@
-package windowPack;
+package calculator;
 
-import scriptPack.Solve;
+import iahmadgad.math.*;
 import javax.swing.*;
 import java.awt.Font;
 import java.awt.event.*;
@@ -8,15 +8,13 @@ import java.awt.Color;
 
 /**
  * JCalculator
- * @version 0.4
- * Window class.
+ * @version 0.5
+ * Window Class
  * @author iAhmadGad
  */
 
 public class Window{
 
-	static Solve solve = new Solve();
-	
 	static String input;	
 	
 	public static void main(String[] args){
@@ -58,7 +56,7 @@ public class Window{
 			    public void actionPerformed(ActionEvent e){  
 						 
 					input = textField.getText();
-					textField.setText(solve.out(textField.getText()));
+					textField.setText(Double.toString(new Solve(textField.getText()).getValue()));
 					textField.setCaretPosition( 0 );
 					 
 			    }  
@@ -94,28 +92,28 @@ public class Window{
 			subButton.setBounds(180, 317, 96, 40);
 			frame.getContentPane().add(subButton);
 			
-			JButton mtpButton = new JButton("x");
+			JButton mtpButton = new JButton("*");
 			mtpButton.setFocusable(false);
 			mtpButton.setFont(new Font("Monospaced", Font.PLAIN, 20));
 			mtpButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
 					input = textField.getText();
-					textField.setText(input + "x");
+					textField.setText(input + "*" /*"x"*/);
 					
 				}
 			});
 			mtpButton.setBounds(278, 276, 96, 40);
 			frame.getContentPane().add(mtpButton);
 			
-			JButton dvdButton = new JButton("\u00F7");
+			JButton dvdButton = new JButton("/");
 			dvdButton.setFocusable(false);
 			dvdButton.setFont(new Font("Monospaced", Font.PLAIN, 20));
 			dvdButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
 					input = textField.getText();
-					textField.setText(input + "\u00F7");
+					textField.setText(input + "/"/*"\u00F7"*/);
 					
 				}
 			});
@@ -135,18 +133,6 @@ public class Window{
 			});
 			rtButton.setBounds(278, 235, 96, 40);
 			frame.getContentPane().add(rtButton);
-			
-			/* JButton rndWriteB = new JButton("rn");
-			rndWriteB.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-					input = TextField.getText();
-					TextField.setText(input + "rn");
-					
-				}
-			});
-			rndWriteB.setBounds(180, 185, 96, 40);
-			Frame.getContentPane().add(rndWriteB); */
 			
 			JButton powButton = new JButton("^");
 			powButton.setFocusable(false);
@@ -178,7 +164,7 @@ public class Window{
 			
 			
 			
-			JButton piButton = new JButton("\u03C0");
+			/*JButton piButton = new JButton("\u03C0");
 			piButton.setFocusable(false);
 			piButton.setFont(new Font("Monospaced", Font.PLAIN, 20));
 			piButton.addActionListener(new ActionListener() {
@@ -190,7 +176,7 @@ public class Window{
 				}
 			});
 			piButton.setBounds(180, 194, 96, 40);
-			frame.getContentPane().add(piButton);
+			frame.getContentPane().add(piButton);*/
 			
 			
 		    JButton pointButton = new JButton(".");
@@ -388,7 +374,7 @@ public class Window{
 			nineButton.setBounds(110, 194, 50, 40);
 			frame.getContentPane().add(nineButton);
 			
-			JButton randomButton = new JButton("rn");
+			/*JButton randomButton = new JButton("rn");
 			randomButton.setFont(new Font("Monospaced", Font.PLAIN, 11));
 			randomButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -400,9 +386,9 @@ public class Window{
 			});
 			randomButton.setFocusable(false);
 			randomButton.setBounds(10, 154, 50, 40);
-			frame.getContentPane().add(randomButton);
+			frame.getContentPane().add(randomButton);*/
 			
-			JLabel lblNewLabel = new JLabel("@author iAhmadGad                            JC-v0.4");
+			JLabel lblNewLabel = new JLabel("@author iAhmadGad                            JC-v0.5");
 			lblNewLabel.setFont(new Font("Monospaced", Font.PLAIN, 12));
 			lblNewLabel.setBounds(10, 0, 364, 27);
 			frame.getContentPane().add(lblNewLabel);
