@@ -6,7 +6,7 @@ public class MainConsole
 {
 	private static Scanner scanner = new Scanner(System.in);
 	
-	private static void MainConsole()
+	private MainConsole()
 	{
 		System.out.println("--- JCalculator 0.6 by @iAhmadGad ---");
 		System.out.print("Enter math sentence: ");
@@ -19,7 +19,7 @@ public class MainConsole
 		boolean run = true;
 		while(run)
 		{
-			MainConsole();
+			new MainConsole();
 			System.out.print("run - JCaclulator - again? (y/n): ");
 			run = scanner.next().compareTo("y") == 0;
 		}
