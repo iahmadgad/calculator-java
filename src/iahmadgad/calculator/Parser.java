@@ -4,23 +4,52 @@ import java.util.ArrayList;
 
 public class Parser 
 {
-	private int value;
+	private static String sentence;
+	private static int value;
 	
-	protected void Parse(String sentence)
+	public static int getValue(String sentence)
 	{
-		ArrayList<String> elements = splitElements(sentence);
-		while(elements.size() != 1)
-		{
-			String currentOperation;
-			if(elements.get(1).compareTo("+") == 0) currentOperation = String.valueOf(Integer.parseInt(elements.get(0)) + Integer.parseInt(elements.get(2)));
-			else currentOperation = String.valueOf(Integer.parseInt(elements.get(0)) - Integer.parseInt(elements.get(2)));
-			elements.set(0, currentOperation);
-			elements.remove(1);
-			elements.remove(1);
-		}
+		Parser.sentence = sentence;
+		parse();
+		return value;
 	}
 	
-	private ArrayList<String> splitElements(String sentence)
+	private static void parse()
+	{
+		ArrayList<String> elements = splitElements();
+		for(int i = 0; i < elements.size(); i++)
+		{
+			if(isFirstOrderOperator(elements.get(i)))
+			{
+				String currentOperation = String.valueOf(operate(Integer.parseInt(elements.get(i - 1)), elements.get(i).charAt(0), Integer.parseInt(elements.get(i + 1))));
+				elements.set(i - 1, currentOperation);
+				elements.remove(i);
+				elements.remove(i);
+			}
+		}
+		for(int i = 0; i < elements.size(); i++)
+		{
+			if(isSecondOrderOperator(elements.get(i)))
+			{
+				String currentOperation = String.valueOf(operate(Integer.parseInt(elements.get(i - 1)), elements.get(i).charAt(0), Integer.parseInt(elements.get(i + 1))));
+				elements.set(i - 1, currentOperation);
+				elements.remove(i);
+				elements.remove(i);
+			}
+		}
+		value = Integer.parseInt(elements.get(0));
+	}
+	
+	private static int operate(int firstOperand, char operator, int secondOperand)
+	{
+		if(operator == '+') return firstOperand + secondOperand;
+		else if (operator == '-') return firstOperand - secondOperand;
+		else if(operator == '*' || operator == 'x') return firstOperand * secondOperand;
+		else if(operator == '/' || operator == '÷') return firstOperand / secondOperand;
+		return 0;
+	}
+	
+	private static ArrayList<String> splitElements()
 	{
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("");
@@ -39,9 +68,21 @@ public class Parser
 		return list;
 	}
 	
-	private boolean isOperator(char c)
+	private static boolean isOperator(char c)
 	{
-		if(c == '+' || c == '-') return true;
+		if(c == '+' || c == '-' || c == '*' || c == 'x' || c == '/' || c == '÷') return true;
+		return false;
+	}
+	
+	private static boolean isFirstOrderOperator(String s)
+	{
+		if(s.compareTo("*") == 0 || s.compareTo("x") == 0 || s.compareTo("/") == 0 ||  s.compareTo("÷") == 0) return true;
+		return false;
+	}
+	
+	private static boolean isSecondOrderOperator(String s)
+	{ 
+		if(s.compareTo("+") == 0 || s.compareTo("-") == 0) return true;
 		return false;
 	}
 }
