@@ -26,17 +26,11 @@ public class Parser
 		ArrayList<String> elements = splitElements();
 		for(int i = 0; i < elements.size(); i++)
 		{
-			if(isFirstOrderOperator(elements.get(i)) && operandsNumber(elements.get(i)) == 1)
+			if(isFirstOrderOperator(elements.get(i)))
 			{
 				String currentOperation = String.valueOf(operate(elements.get(i), Double.parseDouble(elements.get(i + 1))));
 				elements.set(i, currentOperation);
 				elements.remove(i + 1);
-			}
-			else if(isFirstOrderOperator(elements.get(i)) && operandsNumber(elements.get(i)) == -1)
-			{
-				String currentOperation = String.valueOf(operate(elements.get(i), Double.parseDouble(elements.get(i - 1))));
-				elements.set(i, currentOperation);
-				elements.remove(i - 1);
 			}
 		}
 		for(int i = 0; i < elements.size(); i++)
@@ -48,7 +42,7 @@ public class Parser
 				elements.remove(i);
 				elements.remove(i);
 			}
-			else if(isFirstOrderOperator(elements.get(i)) && operandsNumber(elements.get(i)) == 1)
+			else if(isSecondOrderOperator(elements.get(i)) && operandsNumber(elements.get(i)) == 1)
 			{
 				String currentOperation = String.valueOf(operate(elements.get(i), Double.parseDouble(elements.get(i + 1))));
 				elements.set(i, currentOperation);
@@ -85,9 +79,21 @@ public class Parser
 		int index = 0;
 		for(int i = 0; i < sentence.length(); i++)
 		{
-			if(isOperator(sentence.charAt(i)) || isSymbol(sentence.charAt(i)))
+			if(isOperator(sentence.charAt(i)))
 			{
 				list.add(Character.toString(sentence.charAt(i)));
+				index++;
+				list.add("");
+				index++;
+			}
+			else if(isConsonant(sentence.charAt(i)))
+			{
+				if(index > 0 && (presentsInteger(list.get(index - 1)) || presentsDouble(list.get(index - 1))))
+				{
+					list.add("*");
+					index++;
+				}
+				list.add(String.valueOf(getConsonantValue(sentence.charAt(i))));
 				index++;
 				list.add("");
 				index++;
@@ -101,6 +107,29 @@ public class Parser
 					list.set(index, list.get(index) + sentence.charAt(i + 1));
 					i++;
 				}
+				if(list.get(index).compareTo("pow") != 0 && index > 0 && (presentsInteger(list.get(index - 1)) || presentsDouble(list.get(index - 1))))
+				{
+					index++;
+					list.add(index - 1, "*");
+				}
+				list.add("");
+				index++;
+			}
+			else if(sentence.charAt(i) == '(')
+			{
+				index++;
+				String betweenParentheses = "";
+				while(sentence.charAt(i + 1) != ')')
+				{
+					betweenParentheses += sentence.charAt(i + 1);
+					i++;
+				}
+				if(index > 0 && (presentsInteger(list.get(index - 1)) || presentsDouble(list.get(index - 1))))
+				{
+					list.add("*");
+					index++;
+				}
+				list.add(String.valueOf(getValue(betweenParentheses)));
 				list.add("");
 				index++;
 			}
@@ -113,7 +142,6 @@ public class Parser
 	private static byte operandsNumber(String operand)
 	{
 		if(operand.compareTo("sqrt") == 0 || operand.compareTo("cbrt") == 0 || operand.compareTo("!") == 0 || operand.compareTo("sin") == 0 || operand.compareTo("cos") == 0 || operand.compareTo("tan") == 0) return 1;
-		else if(operand.compareTo("π") == 0) return -1;
 		else return 2;
 	}
 	
@@ -145,15 +173,21 @@ public class Parser
 		return false;
 	}
 	
-	private static boolean isSymbol(char c)
+	private static boolean isConsonant(char c)
 	{
 		if(c == 'π') return true;
 		return false;
 	}
 	
+	private static double getConsonantValue(char c)
+	{
+		if(c == 'π') return Math.PI;
+		return 1;
+	}
+	
 	private static boolean isFirstOrderOperator(String s)
 	{
-		if(s.compareTo("sin") == 0 || s.compareTo("cos") == 0|| s.compareTo("tan") == 0 || s.compareTo("π") == 0) return true;
+		if(s.compareTo("sin") == 0 || s.compareTo("cos") == 0|| s.compareTo("tan") == 0) return true;
 		return false;
 	}
 	
@@ -173,5 +207,40 @@ public class Parser
 	{ 
 		if(s.compareTo("+") == 0 || s.compareTo("-") == 0) return true;
 		return false;
+	}
+	
+	/**
+	 * Checks if string presents a double value
+	 * 
+	 * @param string
+	 * @return true if it presents a double value & false if it's not
+	 */
+	protected static boolean presentsDouble(String string)
+	{
+		int point = 0;
+		for(int i = 0; i < string.length(); i++)
+		{
+			if(string.charAt(i) == '.' && point == 0) point = 1;
+			else if((!Character.isDigit(string.charAt(i)) && string.charAt(i) != '.') || string.charAt(i) == '.' && point == 1) return false;
+		}
+		if(point == 0) return false;
+		if(string == "") return false;
+		return true;
+	}
+	
+	/**
+	 * Checks if string presents an int value
+	 * 
+	 * @param string
+	 * @return true if it presents an int value & false if it's not
+	 */
+	protected static boolean presentsInteger(String string)
+	{
+		for(int i = 0; i < string.length(); i++)
+		{
+			if(!Character.isDigit(string.charAt(i))) return false;
+		}
+		if(string == "") return false;
+		return true;
 	}
 }
