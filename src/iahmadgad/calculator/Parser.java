@@ -7,11 +7,11 @@ public class Parser
 	private static String sentence;
 	private static double value;
 	
-	public static String getEnhancedValue(String sentence)
+	public static Object getEnhancedValue(String sentence)
 	{
 		double value = getValue(sentence);
-		String splitDecimal[] = String.valueOf(value).split("[.]");
-		return splitDecimal[1].compareTo("0") == 0 ? splitDecimal[0] : splitDecimal[0] + '.' + splitDecimal[1];
+		if(value - (int) value == 0.0) return (int) value;
+		else return value;
 	}
 	
 	public static double getValue(String sentence)
@@ -26,28 +26,33 @@ public class Parser
 		ArrayList<String> elements = splitElements();
 		for(int i = 0; i < elements.size(); i++)
 		{
-			if(isFirstOrderOperator(elements.get(i)) && operatorsNumber(elements.get(i)) == 2)
-			{
-				String currentOperation = String.valueOf(operate(Double.parseDouble(elements.get(i - 1)), elements.get(i), Double.parseDouble(elements.get(i + 1))));
-				elements.set(i - 1, currentOperation);
-				elements.remove(i);
-				elements.remove(i);
-			}
-			else if(isFirstOrderOperator(elements.get(i)) && operatorsNumber(elements.get(i)) == 1)
+			if(isFirstOrderOperator(elements.get(i)) && operandsNumber(elements.get(i)) == 1)
 			{
 				String currentOperation = String.valueOf(operate(elements.get(i), Double.parseDouble(elements.get(i + 1))));
 				elements.set(i, currentOperation);
 				elements.remove(i + 1);
 			}
+			else if(isFirstOrderOperator(elements.get(i)) && operandsNumber(elements.get(i)) == -1)
+			{
+				String currentOperation = String.valueOf(operate(elements.get(i), Double.parseDouble(elements.get(i - 1))));
+				elements.set(i, currentOperation);
+				elements.remove(i - 1);
+			}
 		}
 		for(int i = 0; i < elements.size(); i++)
 		{
-			if(isSecondOrderOperator(elements.get(i)))
+			if(isSecondOrderOperator(elements.get(i)) && operandsNumber(elements.get(i)) == 2)
 			{
 				String currentOperation = String.valueOf(operate(Double.parseDouble(elements.get(i - 1)), elements.get(i), Double.parseDouble(elements.get(i + 1))));
 				elements.set(i - 1, currentOperation);
 				elements.remove(i);
 				elements.remove(i);
+			}
+			else if(isFirstOrderOperator(elements.get(i)) && operandsNumber(elements.get(i)) == 1)
+			{
+				String currentOperation = String.valueOf(operate(elements.get(i), Double.parseDouble(elements.get(i + 1))));
+				elements.set(i, currentOperation);
+				elements.remove(i + 1);
 			}
 		}
 		for(int i = 0; i < elements.size(); i++)
@@ -60,30 +65,17 @@ public class Parser
 				elements.remove(i);
 			}
 		}
+		for(int i = 0; i < elements.size(); i++)
+		{
+			if(isFourthOrderOperator(elements.get(i)))
+			{
+				String currentOperation = String.valueOf(operate(Double.parseDouble(elements.get(i - 1)), elements.get(i), Double.parseDouble(elements.get(i + 1))));
+				elements.set(i - 1, currentOperation);
+				elements.remove(i);
+				elements.remove(i);
+			}
+		}
 		value = Double.parseDouble(elements.get(0));
-	}
-	
-	private static byte operatorsNumber(String operand)
-	{
-		if(operand.compareTo("sqrt") == 0 || operand.compareTo("cbrt") == 0) return 1;
-		else return 2;
-	}
-	
-	private static double operate(double firstOperand, String operator, double secondOperand)
-	{
-		if(operator.compareTo("+") == 0) return firstOperand + secondOperand;
-		else if (operator.compareTo("-") == 0) return firstOperand - secondOperand;
-		else if(operator.compareTo("*") == 0 || operator.compareTo("x") == 0) return firstOperand * secondOperand;
-		else if(operator.compareTo("/") == 0 || operator.compareTo("�") == 0) return firstOperand / secondOperand;
-		else if(operator.compareTo("pow") == 0) return Math.pow(firstOperand, secondOperand);
-		return 0;
-	}
-	
-	private static double operate(String operator, double operand)
-	{
-		if(operator.compareTo("sqrt") == 0) return Math.sqrt(operand);
-		else if(operator.compareTo("sqrt") == 0) return Math.cbrt(operand);
-		return 0;
 	}
 	
 	private static ArrayList<String> splitElements()
@@ -93,7 +85,7 @@ public class Parser
 		int index = 0;
 		for(int i = 0; i < sentence.length(); i++)
 		{
-			if(isOperator(sentence.charAt(i)))
+			if(isOperator(sentence.charAt(i)) || isSymbol(sentence.charAt(i)))
 			{
 				list.add(Character.toString(sentence.charAt(i)));
 				index++;
@@ -118,25 +110,66 @@ public class Parser
 		return list;
 	}
 	
+	private static byte operandsNumber(String operand)
+	{
+		if(operand.compareTo("sqrt") == 0 || operand.compareTo("cbrt") == 0 || operand.compareTo("!") == 0 || operand.compareTo("sin") == 0 || operand.compareTo("cos") == 0 || operand.compareTo("tan") == 0) return 1;
+		else if(operand.compareTo("π") == 0) return -1;
+		else return 2;
+	}
+	
+	private static double operate(double firstOperand, String operator, double secondOperand)
+	{
+		if(operator.compareTo("+") == 0) return firstOperand + secondOperand;
+		else if (operator.compareTo("-") == 0) return firstOperand - secondOperand;
+		else if(operator.compareTo("*") == 0 || operator.compareTo("x") == 0) return firstOperand * secondOperand;
+		else if(operator.compareTo("/") == 0 || operator.compareTo("÷") == 0) return firstOperand / secondOperand;
+		else if(operator.compareTo("pow") == 0) return Math.pow(firstOperand, secondOperand);
+		return 0;
+	}
+	
+	private static double operate(String operator, double operand)
+	{
+		if(operator.compareTo("sqrt") == 0) return Math.sqrt(operand);
+		else if(operator.compareTo("cbrt") == 0) return Math.cbrt(operand);
+		else if(operator.compareTo("!") == 0) return Function.factorial(operand);
+		else if(operator.compareTo("π") == 0) return Math.PI * operand;
+		else if(operator.compareTo("sin") == 0) return Math.sin(Math.toRadians(operand));
+		else if(operator.compareTo("cos") == 0) return Math.cos(Math.toRadians(operand));
+		else if(operator.compareTo("tan") == 0) return Math.tan(Math.toRadians(operand));
+		return 0;
+	}
+	
 	private static boolean isOperator(char c)
 	{
-		if(c == '+' || c == '-' || c == '*' || c == 'x' || c == '/' || c == '�' || c == '^') return true;
+		if(c == '+' || c == '-' || c == '*' || c == 'x' || c == '/' || c == '÷' || c == '^' || c == '!') return true;
+		return false;
+	}
+	
+	private static boolean isSymbol(char c)
+	{
+		if(c == 'π') return true;
 		return false;
 	}
 	
 	private static boolean isFirstOrderOperator(String s)
 	{
-		if(s.compareTo("pow") == 0 || s.compareTo("sqrt") == 0|| s.compareTo("cbrt") == 0) return true;
+		if(s.compareTo("sin") == 0 || s.compareTo("cos") == 0|| s.compareTo("tan") == 0 || s.compareTo("π") == 0) return true;
 		return false;
 	}
 	
 	private static boolean isSecondOrderOperator(String s)
 	{
-		if(s.compareTo("*") == 0 || s.compareTo("x") == 0 || s.compareTo("/") == 0 ||  s.compareTo("�") == 0) return true;
+		if(s.compareTo("pow") == 0 || s.compareTo("sqrt") == 0|| s.compareTo("cbrt") == 0 || s.compareTo("!") == 0) return true;
 		return false;
 	}
 	
 	private static boolean isThirdOrderOperator(String s)
+	{
+		if(s.compareTo("*") == 0 || s.compareTo("x") == 0 || s.compareTo("/") == 0 ||  s.compareTo("÷") == 0) return true;
+		return false;
+	}
+	
+	private static boolean isFourthOrderOperator(String s)
 	{ 
 		if(s.compareTo("+") == 0 || s.compareTo("-") == 0) return true;
 		return false;
