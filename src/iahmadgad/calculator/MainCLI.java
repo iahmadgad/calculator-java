@@ -2,13 +2,13 @@ package iahmadgad.calculator;
 
 import java.util.Scanner;
 
-public class MainConsole 
+public class MainCLI 
 {
 	private static Scanner scanner = new Scanner(System.in);
 	
 	static int i = 0;
 	
-	private MainConsole()
+	private MainCLI()
 	{
 		System.out.println("--- JCalculator 0.6 by @iAhmadGad ---");
 		if(i != 0)scanner.nextLine();
@@ -22,7 +22,7 @@ public class MainConsole
 		boolean run = true;
 		while(run)
 		{
-			new MainConsole();
+			new MainCLI();
 			System.out.print("run - JCaclulator - again? (y/n): ");
 			run = scanner.next().compareTo("y") == 0;
 			i++;
