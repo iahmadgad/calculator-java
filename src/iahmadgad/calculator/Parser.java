@@ -32,13 +32,12 @@ public class Parser
 				elements.set(i, currentOperation);
 			}
 		}
-		for(int i = 0; i < elements.size() && elements.size() > 1; i++)
+		for(int i = 0; i < elements.size(); i++)
 		{
 			if(isFunction(elements.get(i)))
 			{
-				String currentOperation = String.valueOf(operateFunction(elements.get(i), elements.get(i + 1)));
+				String currentOperation = String.valueOf(operateFunction(elements.get(i)));
 				elements.set(i, currentOperation);
-				elements.remove(i + 1);
 			}
 		}
 		for(int i = 0; i < elements.size() && elements.size() > 1; i++)
@@ -85,80 +84,83 @@ public class Parser
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("");
 		int index = 0;
+		int parenthesesCount = 0;
+		CurrentParse current = CurrentParse.Default;
 		for(int i = 0; i < sentence.length(); i++)
 		{
-			if(isOperator(sentence.charAt(i)))
+			if(Character.isAlphabetic(sentence.charAt(i)) && current == CurrentParse.Default)
 			{
-				list.add(Character.toString(sentence.charAt(i)));
 				index++;
-				list.add("");
-				index++;
-			}
-			else if(isConsonant(sentence.charAt(i)))
-			{
 				if(index > 0 && (presentsInteger(list.get(index - 1)) || presentsDouble(list.get(index - 1))))
 				{
 					list.add("*");
 					index++;
 				}
-				list.add(String.valueOf(getConsonantValue(sentence.charAt(i))));
-				index++;
+				current = CurrentParse.Function;
 				list.add("");
-				index++;
 			}
-			else if(Character.isAlphabetic(sentence.charAt(i)))
+			else if(sentence.charAt(i) == '(' && current == CurrentParse.Default)
 			{
-				String param = "param";
-				list.add(Character.toString(sentence.charAt(i)));
 				index++;
-				while(Character.isAlphabetic(sentence.charAt(i + 1)))
-				{
-					list.set(index, list.get(index) + sentence.charAt(i + 1));
-					i++;
-					if(i == sentence.length() - 1) break;
-				}
 				if(index > 0 && (presentsInteger(list.get(index - 1)) || presentsDouble(list.get(index - 1))))
 				{
+					list.add("*");
 					index++;
-					list.add(index - 1, "*");
 				}
-				if(sentence.charAt(i + 1) == '(')
+				current = CurrentParse.BetweenParentheses;
+				list.add("");
+			}
+			if(current == CurrentParse.Function)
+			{
+				if(sentence.charAt(i) == '(') parenthesesCount++;
+				else if(sentence.charAt(i) == ')') parenthesesCount--;
+				if((sentence.charAt(i) == ')' || Character.isDigit(sentence.charAt(i))) && parenthesesCount == 0)
 				{
-					i++;
-					while(sentence.charAt(i + 1) != ')')
+					list.add("");
+					index++;
+					current = CurrentParse.Default;
+				}
+				else list.set(index, list.get(index) + sentence.charAt(i));
+			}
+			if(current == CurrentParse.BetweenParentheses)
+			{
+				if(sentence.charAt(i) == '(') parenthesesCount++;
+				else if(sentence.charAt(i) == ')') parenthesesCount--;
+				if(sentence.charAt(i) == ')' && parenthesesCount == 0)
+				{
+					list.set(index, list.get(index) + ')');
+					list.add("");
+					index++;
+					current = CurrentParse.Default;
+				}
+				else list.set(index, list.get(index) + sentence.charAt(i));
+			}
+			if(current == CurrentParse.Default)
+			{
+				if(isOperator(sentence.charAt(i)))
+				{
+					list.add(Character.toString(sentence.charAt(i)));
+					index++;
+					list.add("");
+					index++;
+				}
+				else if(isConsonant(sentence.charAt(i)))
+				{
+					if(index > 0 && (presentsInteger(list.get(index - 1)) || presentsDouble(list.get(index - 1))))
 					{
-						param += sentence.charAt(i + 1);
-						i++;
+						list.add("*");
+						index++;
 					}
-					i++;
-				}
-				list.add(param);
-				index++;
-				list.add("");
-				index++;
-			}
-			else if(sentence.charAt(i) == '(')
-			{
-				index++;
-				String betweenParentheses = "(";
-				while(sentence.charAt(i + 1) != ')')
-				{
-					betweenParentheses += sentence.charAt(i + 1);
-					i++;
-				}
-				betweenParentheses += ')';
-				if(index > 0 && (presentsInteger(list.get(index - 1)) || presentsDouble(list.get(index - 1))))
-				{
-					list.add("*");
+					list.add(String.valueOf(getConsonantValue(sentence.charAt(i))));
+					index++;
+					list.add("");
 					index++;
 				}
-				list.add(betweenParentheses);
-				list.add("");
-				index++;
+				else list.set(index, list.get(index) + sentence.charAt(i));
 			}
-			else list.set(index, list.get(index) + sentence.charAt(i));
 		}
 		while(list.contains("")) list.remove(list.indexOf(""));
+		while(list.contains(")")) list.remove(list.indexOf(")"));
 		return list;
 	}
 	
@@ -184,16 +186,16 @@ public class Parser
 		return 0;
 	}
 	
-	private static double operateFunction(String function, String param)
+	private static double operateFunction(String function)
 	{
-	    if(function.compareTo("pow") == 0) return Math.pow(Double.parseDouble(param.substring(5).split(",")[0]), Double.parseDouble(param.substring(5).split(",")[1]));
-	    else if(function.compareTo("sqrt") == 0) return Math.sqrt(Double.parseDouble(param.substring(5)));
-		else if(function.compareTo("cbrt") == 0) return Math.cbrt(Double.parseDouble(param.substring(5)));
-		else if(function.compareTo("sin") == 0) return Math.sin(Math.toRadians(Double.parseDouble(param.substring(5))));
-		else if(function.compareTo("cos") == 0) return Math.cos(Math.toRadians(Double.parseDouble(param.substring(5))));
-		else if(function.compareTo("tan") == 0) return Math.tan(Math.toRadians(Double.parseDouble(param.substring(5))));
-		else if(function.compareTo("rnd") == 0 && param.compareTo("param") == 0) return Function.random();
-		else if((function.compareTo("rnd") == 0 && param.compareTo("param") != 0)) return Function.random(Double.parseDouble(param.substring(5).split(",")[0]), Double.parseDouble(param.substring(5).split(",")[1]));
+	    if(function.contains("pow")) return Math.pow(getValue(function.substring(4).split(",")[0]), getValue(function.substring(4).split(",")[1]));
+	    else if(function.contains("sqrt")) return Math.sqrt(getValue(function.substring(5)));
+		else if(function.contains("cbrt")) return Math.cbrt(getValue(function.substring(5)));
+		else if(function.contains("sin")) return Math.sin(Math.toRadians(getValue(function.substring(4))));
+		else if(function.contains("cos")) return Math.cos(Math.toRadians(getValue(function.substring(4))));
+		else if(function.contains("tan")) return Math.tan(Math.toRadians(getValue(function.substring(4))));
+		else if(function.compareTo("rnd") == 0) return Function.random();
+		else if(function.contains("rnd")) return Function.random(getValue(function.substring(4).split(",")[0]), getValue(function.substring(4).split(",")[1]));
 		return 0;
 	}
 	
@@ -223,7 +225,7 @@ public class Parser
 	
 	private static boolean isFunction(String s)
 	{
-		if(s.compareTo("pow") == 0 || s.compareTo("sqrt") == 0|| s.compareTo("cbrt") == 0 || s.compareTo("sin") == 0 || s.compareTo("cos") == 0|| s.compareTo("tan") == 0 || s.compareTo("rn") == 0) return true;
+		if(s.contains("pow")|| s.contains("sqrt")|| s.contains("cbrt")|| s.contains("sin")|| s.contains("cos")|| s.contains("tan")|| s.contains("rn")) return true;
 		return false;
 	}
 	
