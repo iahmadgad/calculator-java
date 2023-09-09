@@ -7,14 +7,14 @@ package iahmadgad.calculator;
 import java.util.ArrayList;
 
 /**
- * Parser class.
+ * Solver class.
  * 
  * @author iAhmadGad
  * @version 0.6
  * @since 0.6
  */
 
-public class Parser 
+public class Solver 
 {
 	private static String sentence;
 	private static double value;
@@ -28,7 +28,7 @@ public class Parser
 	
 	public static double getValue(String sentence)
 	{
-		Parser.sentence = sentence;
+		Solver.sentence = sentence;
 		solve();
 		return value;
 	}

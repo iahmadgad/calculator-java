@@ -26,7 +26,7 @@ public class MainCLI
 		if(i != 0)scanner.nextLine();
 		System.out.print("Enter math sentence: ");
 		String sentence = scanner.nextLine();
-		System.out.println(Parser.getEnhancedValue(sentence));
+		System.out.println(Solver.getEnhancedValue(sentence));
 	}
 	
 	public static void main(String args[])
