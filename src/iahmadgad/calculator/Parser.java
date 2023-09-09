@@ -48,12 +48,14 @@ public class Parser
 				elements.set(i - 1, currentOperation);
 				elements.remove(i);
 				elements.remove(i);
+				i -= 2;
 			}
 			else if(isFirstOrderOperator(elements.get(i)) && operandsNumber(elements.get(i)) == 1)
 			{
 				String currentOperation = String.valueOf(operate(elements.get(i), Double.parseDouble(elements.get(i + 1))));
 				elements.set(i, currentOperation);
 				elements.remove(i + 1);
+				i--;
 			}
 		}
 		for(int i = 0; i < elements.size() && elements.size() > 1; i++)
@@ -64,6 +66,7 @@ public class Parser
 				elements.set(i - 1, currentOperation);
 				elements.remove(i);
 				elements.remove(i);
+				i -= 2;
 			}
 		}
 		for(int i = 0; i < elements.size() && elements.size() > 1; i++)
@@ -74,6 +77,7 @@ public class Parser
 				elements.set(i - 1, currentOperation);
 				elements.remove(i);
 				elements.remove(i);
+				i -= 2;
 			}
 		}
 		value = Double.parseDouble(elements.get(0));
