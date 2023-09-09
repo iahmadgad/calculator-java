@@ -1,10 +1,21 @@
 package iahmadgad.calculator;
 
+/*
+ * JCaclculator
+ */
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
+
+/**
+ * MainGUI class.
+ * 
+ * @author iAhmadGad
+ * @version 0.6
+ * @since 0.6
+ */
 
 public class MainGUI 
 {
@@ -42,7 +53,7 @@ public class MainGUI
 		frame.setBounds(100, 100, 400, 450);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel label = new JLabel("@author iAhmadGad                            JC-v0.7");
+		JLabel label = new JLabel("@author iAhmadGad                            JC-v0.6");
 		label.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		label.setBounds(10, 0, 364, 27);
 		frame.getContentPane().add(label);

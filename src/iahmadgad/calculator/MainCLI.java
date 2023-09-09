@@ -1,6 +1,18 @@
 package iahmadgad.calculator;
 
+/*
+ * JCaclculator
+ */
+
 import java.util.Scanner;
+
+/**
+ * MainCLI class.
+ * 
+ * @author iAhmadGad
+ * @version 0.6
+ * @since 0.6
+ */
 
 public class MainCLI 
 {

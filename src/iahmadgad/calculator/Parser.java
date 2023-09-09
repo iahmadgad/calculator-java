@@ -1,6 +1,18 @@
 package iahmadgad.calculator;
 
+/*
+ * JCaclculator
+ */
+
 import java.util.ArrayList;
+
+/**
+ * Parser class.
+ * 
+ * @author iAhmadGad
+ * @version 0.6
+ * @since 0.6
+ */
 
 public class Parser 
 {

@@ -1,5 +1,17 @@
 package iahmadgad.calculator;
 
+/*
+ * JCaclculator
+ */
+
+/**
+ * Function class.
+ * 
+ * @author iAhmadGad
+ * @version 0.6
+ * @since 0.6
+ */
+
 public class Function 
 {
 	public static double factorial(double n)
