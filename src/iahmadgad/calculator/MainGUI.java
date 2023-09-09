@@ -10,11 +10,11 @@ public class MainGUI
 {
 	private JFrame frame;
 	private JTextField textField;
-	private JButton solveButton;
+	private JButton solveButton, deleteButton, clearButton;
 	private JButton numberButtons[];
-	private JButton typeButtons[];
-	private String typeText[] = {"+", "-", "x", "÷", "sqrt(", "cbrt(", "pow(", "rnd(", "π", ".", ",", "sin", "cos", "tan"};
-	private int buttonsBounds[][] = 
+	private JButton Buttons[];
+	private String text[] = {"+", "-", "x", "÷", "sqrt(", "cbrt(", "pow(", "rnd(", "π", ".", ",", "sin", "cos", "tan"};
+	private int buttonsBounds[][] =
 		{{60, 317, 50, 40}, {10, 276, 50, 40}, {60, 276, 50, 40}, {110, 276, 50, 40}, {10, 235, 50, 40}, {60, 235, 50, 40}, {110, 235, 50, 40}, {10, 194, 50, 40}, {60, 194, 50, 40}, {110, 194, 50, 40}, {278, 317, 96, 40}, {180, 317, 96, 40}, {278, 276, 96, 40}, {180, 276, 96, 40}, {278, 235, 96, 40}, {180, 235, 96, 40}, {278, 194, 96, 40}, {180, 194, 96, 40}, {10, 154, 50, 40}, {10, 317, 50, 40}, {110, 317, 50, 40}, {180, 154, 64, 40}, {245, 154, 64, 40}, {310, 154, 64, 40}};
 	
 	/**
@@ -42,26 +42,65 @@ public class MainGUI
 		frame.setBounds(100, 100, 400, 450);
 		frame.getContentPane().setLayout(null);
 		
+		JLabel label = new JLabel("@author iAhmadGad                            JC-v0.7");
+		label.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		label.setBounds(10, 0, 364, 27);
+		frame.getContentPane().add(label);
+		
+		JLabel trigonometricFunctionsLabel = new JLabel("Trigonometric functions:");
+		trigonometricFunctionsLabel.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		trigonometricFunctionsLabel.setBounds(180, 129, 194, 27);
+		frame.getContentPane().add(trigonometricFunctionsLabel);
+		
 		textField = new JTextField();
-		textField.setBounds(0, 0, 384, 80);
+		textField.setBounds(10, 27, 364, 80);
 		textField.setBackground(Color.WHITE);
-		textField.setFont(new Font("Monospaced", Font.PLAIN, 40));
+		textField.setFont(new Font("Monospaced", Font.PLAIN, 20));
+		frame.getContentPane().add(textField);
 		
 		solveButton = new JButton("=");
 		solveButton.setBounds(180, 360, 194, 40);
+		solveButton.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		solveButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
 				textField.setText(String.valueOf(Parser.getEnhancedValue(textField.getText())));
+				textField.setCaretPosition(0);
 			}
 		});
+		frame.getContentPane().add(solveButton);
+		
+		deleteButton = new JButton("Del");
+		deleteButton.setBounds(10, 360, 70, 40);
+		deleteButton.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		deleteButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				textField.setText(textField.getText().substring(0, textField.getText().length() - 1));
+			}
+		});
+		frame.getContentPane().add(deleteButton);
+		
+		clearButton = new JButton("AC");
+		clearButton.setBounds(90, 360, 70, 40);
+		clearButton.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		clearButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				textField.setText(null);
+			}
+		});
+		frame.getContentPane().add(clearButton);
 		
 		numberButtons = new JButton[10];
 		for(byte i = 0; i < 10; i++)
 		{
 			numberButtons[i] = new JButton(String.valueOf(i));
 			numberButtons[i].setBounds(buttonsBounds[i][0], buttonsBounds[i][1], buttonsBounds[i][2], buttonsBounds[i][3]);
+			numberButtons[i].setFont(new Font("Monospaced", Font.PLAIN, 15));
 			final int escape = i;
 			numberButtons[i].addActionListener(new ActionListener()
 			{
@@ -73,34 +112,23 @@ public class MainGUI
 			frame.getContentPane().add(numberButtons[i]);
 		}
 		
-		for(byte i = 0; i < 10; i++)
-		{
-			
-		}
-		
-		typeButtons = new JButton[14];
+		Buttons = new JButton[14];
 		for(byte i = 0; i < 14; i++)
 		{
-			typeButtons[i] = new JButton(typeText[i]);
-			typeButtons[i].setBounds(buttonsBounds[i + 10][0], buttonsBounds[i + 10][1], buttonsBounds[i + 10][2], buttonsBounds[i + 10][3]);
+			Buttons[i] = new JButton(text[i]);
+			Buttons[i].setBounds(buttonsBounds[i + 10][0], buttonsBounds[i + 10][1], buttonsBounds[i + 10][2], buttonsBounds[i + 10][3]);
+			Buttons[i].setFont(new Font("Monospaced", Font.PLAIN, 15));
 			final int escape = i;
-			typeButtons[i].addActionListener(new ActionListener()
+			Buttons[i].addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					textField.setText(textField.getText() + typeText[escape]);
+					textField.setText(textField.getText() + text[escape]);
 				}
 			});
-			frame.getContentPane().add(typeButtons[i]);
+			frame.getContentPane().add(Buttons[i]);
 		}
 		
-		for(byte i = 0; i < 14; i++)
-		{
-			
-		}
-		
-		frame.getContentPane().add(solveButton);
-		frame.getContentPane().add(textField);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
