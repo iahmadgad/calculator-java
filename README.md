@@ -5,7 +5,7 @@ A simple calculator written in Java. ☕
 - Download the latest release from [**here**](https://github.com/iAhmadGad/JCalculator/releases).
 - Choose your desired version, whether CLI or GUI.
 - In **GUI** case just open the jar file.
-- If **CLI** case run it on your command-line.
+- In **CLI** case run it on your command-line.
 ## 💡 Functions:
 - Addition, subtraction, multiplacation & division
 
@@ -20,7 +20,7 @@ The calculator provides 3 trigonometric functions ($sin$, $cos$, $tan$), more fu
 
 The calculator can generate a random float number (number with decimals), by writing `rnd`, & to generate a random number between 2 specific values, write 2 numbers and a comma between them as: `rn(5,10)`.
 ## 📄 Repo index:
-- [**Source code**](https://github.com/iAhmadGad/JCalculator/tree/main/src/iahmadgad/calculator)
+- [**Source code**](https://github.com/iAhmadGad/JCalculator/tree/main/src/dev/iahmadgad/calculator)
 - [**Documentations**](https://github.com/iAhmadGad/JCalculator/tree/main/docs)
 ## ⚖️ License:
-[**GPL-3.0**](https://github.com/iAhmadGad/JCalculator.Java/blob/main/LICENSE)
+- [**GPL-3.0**](https://github.com/iAhmadGad/JCalculator.Java/blob/main/LICENSE)
