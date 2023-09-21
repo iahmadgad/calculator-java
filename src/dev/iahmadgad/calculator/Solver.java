@@ -1,4 +1,4 @@
-package iahmadgad.calculator;
+package dev.iahmadgad.calculator;
 
 /*
  * JCalculator
