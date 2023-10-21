@@ -6,6 +6,8 @@ package dev.iahmadgad.calculator;
 
 import java.util.Scanner;
 
+import dev.iahmadgad.maths.Solver;
+
 /**
  * MainCLI class.
  * 
