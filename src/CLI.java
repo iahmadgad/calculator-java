@@ -1,7 +1,5 @@
-package dev.iahmadgad.calculator;
-
 /*
- * Java Calculator
+* Java Calculator
  */
 
 import java.util.Scanner;
@@ -33,7 +31,7 @@ public class CLI
 	
 	public static void main(String args[])
 	{
-		System.out.println("--- JCalculator 0.6 by @iAhmadGad ---\nto stop type exit");
+		System.out.println("--- Java-Calculator 0.7 by @iAhmadGad ---\nto stop type exit");
 		new CLI();
 		System.exit(0);
 	}

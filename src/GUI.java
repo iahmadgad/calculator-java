@@ -1,7 +1,5 @@
-package dev.iahmadgad.calculator;
-
 /*
- * JCalculator
+* JCalculator
  */
 
 import java.awt.*;
