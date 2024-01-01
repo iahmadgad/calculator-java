@@ -1,7 +1,7 @@
 <h1 align="center">Calculator</h1>
 
 A simple calculator written in Java. ☕
-## 🤔 Install:
+## ☁️ Install:
 - Download the latest [**release**](https://github.com/iAhmadGad/Java-Calculator/releases).
 - Choose your desired version, whether CLI or GUI.
 - In **GUI** case just open the jar file.
