@@ -8,31 +8,31 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import dev.iahmadgad.maths.Solver;
+import dev.iahmadgad.maths.ValueDefiner;
 
 /**
- * MainGUI class.
+ * GUI class.
  * 
  * @author iAhmadGad
- * @version 0.6
+ * @version 0.7
  * @since 0.6
  */
 
-public class MainGUI 
+public class GUI 
 {
 	private JFrame frame;
 	private JTextField textField;
 	private JButton solveButton, deleteButton, clearButton;
 	private JButton numberButtons[];
 	private JButton Buttons[];
-	private String text[] = {"+", "-", "x", "÷", "sqrt(", "cbrt(", "pow(", "rnd", "π", ".", ",", "sin", "cos", "tan", "!", ")"};
+	private String text[] = {"+", "-", "*", "÷", "sqrt(", "cbrt(", "pow(", "rnd", "π", ".", ",", "sin(", "cos(", "tan(", "!", ")"};
 	private int buttonsBounds[][] =
 		{{60, 317, 50, 40}, {10, 276, 50, 40}, {60, 276, 50, 40}, {110, 276, 50, 40}, {10, 235, 50, 40}, {60, 235, 50, 40}, {110, 235, 50, 40}, {10, 194, 50, 40}, {60, 194, 50, 40}, {110, 194, 50, 40}, {278, 317, 96, 40}, {180, 317, 96, 40}, {278, 276, 96, 40}, {180, 276, 96, 40}, {278, 235, 96, 40}, {180, 235, 96, 40}, {278, 194, 96, 40}, {180, 194, 96, 40}, {10, 154, 50, 40}, {10, 317, 50, 40}, {110, 317, 50, 40}, {180, 154, 64, 40}, {245, 154, 64, 40}, {310, 154, 64, 40}, {60, 154, 50, 40}, {110, 154, 50, 40}};
 	
 	/**
 	 * Create the application.
 	 */
-	private MainGUI()
+	private GUI()
 	{
 		initialize();
 	}
@@ -54,7 +54,7 @@ public class MainGUI
 		frame.setBounds(100, 100, 400, 450);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel label = new JLabel("@author iAhmadGad                            JC-v0.6");
+		JLabel label = new JLabel("@author iAhmadGad               Java-Calculator-v0.7");
 		label.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		label.setBounds(10, 0, 364, 27);
 		frame.getContentPane().add(label);
@@ -77,7 +77,7 @@ public class MainGUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				textField.setText(String.valueOf(Solver.getEnhancedValue(textField.getText())));
+				textField.setText(String.valueOf(ValueDefiner.getEnhancedValue(textField.getText())));
 				textField.setCaretPosition(0);
 			}
 		});
@@ -129,7 +129,7 @@ public class MainGUI
 		{
 			Buttons[i] = new JButton(text[i]);
 			Buttons[i].setBounds(buttonsBounds[i + 10][0], buttonsBounds[i + 10][1], buttonsBounds[i + 10][2], buttonsBounds[i + 10][3]);
-			Buttons[i].setFont(new Font("Monospaced", Font.PLAIN, 15));
+			Buttons[i].setFont(new Font("Monospaced", Font.PLAIN, 14));
 			final int escape = i;
 			Buttons[i].addActionListener(new ActionListener()
 			{
@@ -156,7 +156,7 @@ public class MainGUI
 			{
 				try
 				{
-					MainGUI GUI = new MainGUI();
+					GUI GUI = new GUI();
 					GUI.frame.setVisible(true);
 				}
 				catch(Exception e)
