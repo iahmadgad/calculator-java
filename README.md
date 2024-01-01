@@ -27,7 +27,7 @@ The calculator provides 3 trigonometric functions ($sin$, $cos$, $tan$), more fu
 
 The calculator can generate a random float number (number with decimals), by writing `rnd`, & to generate a random number between 2 specific values, write 2 numbers and a comma between them as: `rn(5,10)`.
 ## 📄 Repo index:
-- [**Source code**](https://github.com/iAhmadGad/Java-Calculator/tree/main/src/dev/iahmadgad/calculator)
+- [**Source code**](https://github.com/iAhmadGad/Java-Calculator/tree/main/src)
 - [**Documentation**](https://github.com/iAhmadGad/Java-Calculator/tree/main/docs)
 ## ⚖️ License:
 - [**GPL-3.0**](https://github.com/iAhmadGad/Java-Calculator/blob/main/LICENSE)
