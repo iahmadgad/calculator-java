@@ -3,13 +3,12 @@
  */
 
 import java.util.Scanner;
-
 import dev.iahmadgad.maths.ValueDefiner;
 
 /**
  * CLI class.
  * 
- * @author iAhmadGad
+ * @author Ahmad Asaad
  * @version 0.7
  * @since 0.6
  */
@@ -31,7 +30,7 @@ public class CLI
 	
 	public static void main(String args[])
 	{
-		System.out.println("--- Java-Calculator 0.7 by @iAhmadGad ---\nto stop type exit");
+		System.out.println("--- Java-Calculator 0.7 by Ahmad Asaad ---\nto stop type exit");
 		new CLI();
 		System.exit(0);
 	}
