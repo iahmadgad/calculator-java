@@ -75,7 +75,7 @@ public class GUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				textField.setText(String.valueOf(ValueDefiner.getEnhancedValue(textField.getText())));
+				textField.setText(String.valueOf(OperationSolver.getEnhancedValue(textField.getText())));
 				textField.setCaretPosition(0);
 			}
 		});
