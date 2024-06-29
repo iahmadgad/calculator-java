@@ -3,7 +3,7 @@
  */
 
 import java.util.Scanner;
-import dev.iahmadgad.maths.ValueDefiner;
+import dev.iahmadgad.maths.OperationSolver;
 
 /**
  * CLI class.
