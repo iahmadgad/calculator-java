@@ -3,7 +3,7 @@
  */
 
 import java.util.Scanner;
-import dev.iahmadgad.maths.OperationSolver;
+import dev.iahmadgad.math.expression.Evaluator;
 
 /**
  * CLI class.
@@ -24,7 +24,7 @@ public class CLI
 			System.out.print(">>> ");
 			String sentence = scanner.nextLine();
 			if(sentence.compareTo("exit") == 0) break;
-			System.out.println(OperationSolver.getEnhancedValue(sentence));
+			System.out.println(Evaluator.getEnhancedValue(sentence));
 		}
 	}
 	

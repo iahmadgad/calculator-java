@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import dev.iahmadgad.maths.OperationSolver;
+import dev.iahmadgad.math.expression.Evaluator;
 
 /**
  * GUI class.
@@ -75,7 +75,7 @@ public class GUI
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				textField.setText(String.valueOf(OperationSolver.getEnhancedValue(textField.getText())));
+				textField.setText(String.valueOf(Evaluator.getEnhancedValue(textField.getText())));
 				textField.setCaretPosition(0);
 			}
 		});
