@@ -20,7 +20,11 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    implementation(project("mathlib"))
+    implementation("dev.iahmadgad.math:math") {
+      version {
+        branch = "main"
+      }
+    }
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
